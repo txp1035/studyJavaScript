@@ -1,2 +1,4 @@
 node_modules
 .vscode
+.umi
+yarn.lock
