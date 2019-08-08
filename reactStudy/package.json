@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "umi dev"
+    "start": "umi dev",
+    "build": "umi build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "umi": "^2.8.16"
+    "umi": "^2.8.16",
+    "umi-plugin-react": "^1.9.14"
   }
 }
