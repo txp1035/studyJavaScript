@@ -1,4 +1,8 @@
+# 通用
 node_modules
 .vscode
-.umi
 yarn.lock
+.DS_Store
+# umi
+.umi
+dist
