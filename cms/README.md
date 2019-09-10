@@ -2,6 +2,11 @@
 
 ## 问题集合
 
+1. 代码检查命令有两套问题。
+2. 了解测试相关。
+3. 了解区块相关。
+4. 了解国际化相关。
+
 ## package.json
 
 脚本分类：
@@ -135,7 +140,13 @@
     "puppeteer": "^1.17.0" //e2e测试需要的浏览器内核
   },
   "engines": { "node": ">=10.0.0" },
-  "checkFiles": ["src/**/*.js*", "src/**/*.ts*", "src/**/*.less", "config/**/*.js*", "scripts/**/*.js"]
+  "checkFiles": [
+    "src/**/*.js*",
+    "src/**/*.ts*",
+    "src/**/*.less",
+    "config/**/*.js*",
+    "scripts/**/*.js"
+  ]
 }
 ```
 
@@ -184,8 +195,7 @@
 
 ## typescript
 
-由于 umi 内置支持了 ts 所以只需要在根目录新建 tsconfig.json 就能使用 ts 了。
-关于 antd pro 配置解析
+由于 umi 内置支持了 ts 所以只需要在根目录新建 tsconfig.json 就能使用 ts 了。关于 antd pro 配置解析
 
 ```json
 {
@@ -210,6 +220,16 @@
       "@/*": ["./src/*"]
     } //模块名到基于 baseUrl的路径映射的列表。
   },
-  "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "src/setupTests.ts", "tslint:latest", "tslint-config-prettier"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "tslint:latest",
+    "tslint-config-prettier"
+  ]
 }
 ```

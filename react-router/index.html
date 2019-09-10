@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id="nav">
+      <a href="#/page1">page1</a>
+      <a href="#/page2">page2</a>
+      <a href="#/page3">page3</a>
+    </div> -->
+    <div id="nav">
+      <a href="/page1">page1</a>
+      <a href="/page2">page2</a>
+      <a href="/page3">page3</a>
+    </div>
+    <div id="content"></div>
+
+    <script>
+      (function(global, factory) {
+        factory(global);
+      })(this, function(window) {
+        function Router() {
+          this.routes = {};
+          window.addEventListener('hashchange', this.reload.bind(this));
+        }
+        Router.prototype.index = function(callback) {
+          this.routes['index'] = callback;
+        };
+        Router.prototype.register = function(hash, callback) {
+          this.routes[hash] = callback;
+        };
+        Router.prototype.reload = function() {
+          let callback;
+          let hash = location.hash.slice(1);
+          !hash ? (callback = this.routes.index) : (callback = this.routes[hash]);
+          callback.call(this);
+        };
+        window.HashRouter = Router;
+      });
+      (function(global, factory) {
+        factory(global);
+      })(this, function(window) {
+        class Router {
+          constructor() {
+            this.routes = {};
+            this.listenerPopState();
+            this.listenerLink();
+          }
+          listenerPopState() {
+            window.addEventListener('popstate', e => {
+              let state = e.state || {};
+              let path = state.path || '';
+              console.log(path);
+              this.hander(path);
+            });
+          }
+          listenerLink() {
+            window.addEventListener('click', e => {
+              let ev = e.target;
+              if (ev.tagName === 'A' && ev.getAttribute('href')) {
+                e.preventDefault();
+                this.urlRefresh(ev.getAttribute('href'));
+              }
+            });
+          }
+          load() {
+            let path = location.pathname;
+          }
+          register(path, cb) {
+            this.routes[path] = cb;
+          }
+          index(cb) {
+            this.routes['/'] = cb;
+          }
+          urlRefresh(path) {
+            history.pushState({ path }, null, path);
+            this.hander(path);
+          }
+          hander(path) {
+            let cb;
+            cb = this.routes[path];
+            cb.call(this);
+          }
+        }
+        window.Router = Router;
+      });
+      let router = new Router();
+      router.load();
+      let content = document.querySelector('#content');
+      router.index(() => {
+        content.innerHTML = '我是首页';
+      });
+      router.register('/page1', () => {
+        content.innerHTML = '我是page1';
+      });
+      router.register('/page2', () => {
+        content.innerHTML = '我是page2';
+      });
+      router.register('/page3', () => {
+        content.innerHTML = '我是page3';
+      });
+      // router.reload();
+    </script>
+  </body>
+</html>
