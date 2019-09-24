@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(1);
+      setTimeout(() => {
+        console.log('宏任务1');
+        const p = new Promise(function(resolve, reject) {
+          console.log('宏任务1的微任务1创建者');
+          resolve();
+        });
+        p.then(function(params) {
+          console.log('宏任务1的微任务1');
+        });
+      });
+      setTimeout(() => {
+        console.log('宏任务2');
+      });
+      const p = new Promise(function(resolve, reject) {
+        console.log('微任务1创建者');
+        resolve();
+      });
+      p.then(function(params) {
+        console.log('微任务1');
+      });
+      const p1 = new Promise(function(resolve, reject) {
+        console.log('微任务2创建者');
+        resolve();
+      });
+      p1.then(function(params) {
+        console.log('微任务2');
+        setTimeout(() => {
+          console.log('微任务2的宏任务');
+        });
+      });
+      setTimeout(() => {
+        console.log('宏任务3');
+      });
+      const p3 = new Promise(function(resolve, reject) {
+        console.log('微任务3创建者');
+        resolve();
+      });
+      p3.then(function(params) {
+        console.log('微任务3');
+        const p4 = new Promise(function(resolve, reject) {
+          console.log('微任务4创建微任务1宏任务');
+          resolve();
+        });
+        p3.then(function(params) {
+          console.log('微任务4创建微任务1');
+        });
+      });
+      const p4 = new Promise(function(resolve, reject) {
+        console.log('微任务4创建者');
+        resolve();
+      });
+      p4.then(function(params) {
+        console.log('微任务4');
+      });
+    </script>
+  </body>
+</html>
