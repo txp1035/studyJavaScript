@@ -1,4 +1,5 @@
 module.exports = function(code) {
   console.log(code);
-  return code;
+  const newCode = code.replace(/c/g, 'console.log').replace(/st/g, 'setTimeout');
+  return newCode;
 };
