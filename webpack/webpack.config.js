@@ -1,4 +1,5 @@
 const MyPlugin = require('./wplugin');
+const MyPlugin2 = require('./wplugin2');
 module.exports = {
   entry: './app.js',
   output: {
@@ -22,5 +23,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [new MyPlugin()]
+  plugins: [new MyPlugin(), new MyPlugin2()]
 };

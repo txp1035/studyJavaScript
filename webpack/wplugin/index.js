@@ -1,8 +1,9 @@
 class FileListPlugin {
   apply(compiler) {
-    console.log('加载插件');
+    console.log('1-加载插件开始');
     // emit 是异步 hook，使用 tapAsync 触及它，还可以使用 tapPromise/tap(同步)
     compiler.hooks.emit.tapAsync('FileListPlugin', (compilation, callback) => {
+      console.log('1-emit');
       // 在生成文件中，创建一个头部字符串：
       var filelist = 'In this build:\n\n';
 
