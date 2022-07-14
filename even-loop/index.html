@@ -11,29 +11,29 @@
       console.log(1);
       setTimeout(() => {
         console.log('宏任务1');
-        const p = new Promise(function(resolve, reject) {
+        const p = new Promise(function (resolve, reject) {
           console.log('宏任务1的微任务1创建者');
           resolve();
         });
-        p.then(function(params) {
+        p.then(function (params) {
           console.log('宏任务1的微任务1');
         });
       });
       setTimeout(() => {
         console.log('宏任务2');
       });
-      const p = new Promise(function(resolve, reject) {
+      const p = new Promise(function (resolve, reject) {
         console.log('微任务1创建者');
         resolve();
       });
-      p.then(function(params) {
+      p.then(function (params) {
         console.log('微任务1');
       });
-      const p1 = new Promise(function(resolve, reject) {
+      const p1 = new Promise(function (resolve, reject) {
         console.log('微任务2创建者');
         resolve();
       });
-      p1.then(function(params) {
+      p1.then(function (params) {
         console.log('微任务2');
         setTimeout(() => {
           console.log('微任务2的宏任务');
@@ -42,27 +42,28 @@
       setTimeout(() => {
         console.log('宏任务3');
       });
-      const p3 = new Promise(function(resolve, reject) {
+      const p3 = new Promise(function (resolve, reject) {
         console.log('微任务3创建者');
         resolve();
       });
-      p3.then(function(params) {
+      p3.then(function (params) {
         console.log('微任务3');
-        const p4 = new Promise(function(resolve, reject) {
+        const p4 = new Promise(function (resolve, reject) {
           console.log('微任务4创建微任务1宏任务');
           resolve();
         });
-        p3.then(function(params) {
+        p3.then(function (params) {
           console.log('微任务4创建微任务1');
         });
       });
-      const p4 = new Promise(function(resolve, reject) {
+      const p4 = new Promise(function (resolve, reject) {
         console.log('微任务4创建者');
         resolve();
       });
-      p4.then(function(params) {
+      p4.then(function (params) {
         console.log('微任务4');
       });
+      // 1 微任务1创建者 微任务2创建者 微任务3创建者 微任务4创建者 微任务1 微任务2 微任务3 微任务4创建微任务1宏任务 微任务4 微任务4创建微任务1 宏任务1 宏任务1的微任务1创建者 宏任务1的微任务1 宏任务2 宏任务3 微任务2的宏任务
     </script>
   </body>
 </html>
